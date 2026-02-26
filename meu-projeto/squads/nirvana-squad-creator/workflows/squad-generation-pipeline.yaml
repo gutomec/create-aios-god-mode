@@ -1,0 +1,110 @@
+# Workflow: squad_generation_pipeline (sequential pipeline pattern)
+# Pipeline completo de geração de squads AIOS — 9 fases desde análise até publicação
+
+workflow_name: squad_generation_pipeline
+description: "Pipeline completo de geração de squads AIOS — 9 fases desde análise de requisitos até publicação no squads.sh"
+
+agent_sequence:
+  - squad-analyzer
+  - squad-agent-creator
+  - squad-task-creator
+  - squad-workflow-creator
+  - squad-optimizer
+  - squad-validator
+  - squad-readme-creator
+  - squad-publisher
+
+key_commands:
+  - "*create-squad"
+  - "*generate-squad"
+
+trigger_threshold: 1
+typical_duration: "10-20 minutes"
+
+success_indicators:
+  - "Squad AIOS validado com 6 categorias PASSED"
+  - "READMEs gerados em 6 idiomas com estrutura idêntica"
+  - "Squad deployado em projeto AIOS com slash commands habilitados"
+  - "Publicação no squads.sh concluída (se solicitada)"
+
+transitions:
+  analysis_complete:
+    trigger: "domain analysis and component registry generated"
+    confidence: 0.90
+    greeting_message: "Análise completa. Iniciando geração de agentes."
+    next_steps:
+      - command: "*create-agents"
+        description: "Generate AIOS agent definitions from analysis"
+        priority: 1
+
+  agents_created:
+    trigger: "all agent definitions generated with AIOS format"
+    confidence: 0.90
+    greeting_message: "Agentes criados. Iniciando geração de tasks."
+    next_steps:
+      - command: "*create-tasks"
+        description: "Generate task definitions with input/output contracts"
+        priority: 1
+
+  tasks_created:
+    trigger: "all task definitions generated with contracts"
+    confidence: 0.90
+    greeting_message: "Tasks criadas. Iniciando geração de workflows."
+    next_steps:
+      - command: "*create-workflows"
+        description: "Generate workflows, squad.yaml, config and README"
+        priority: 1
+
+  workflows_created:
+    trigger: "workflows, squad.yaml, config and README generated"
+    confidence: 0.85
+    greeting_message: "Workflows gerados. Iniciando otimização."
+    next_steps:
+      - command: "*optimize-squad"
+        description: "Apply AgentDropout and fix cross-references"
+        priority: 1
+
+  optimization_complete:
+    trigger: "optimization report generated, no redundant agents"
+    confidence: 0.85
+    greeting_message: "Otimização completa. Iniciando validação."
+    next_steps:
+      - command: "*validate-squad"
+        description: "Validate squad against 6 AIOS categories"
+        priority: 1
+
+  validation_passed:
+    trigger: "validation report shows PASSED for all 6 categories"
+    confidence: 0.95
+    greeting_message: "Validação aprovada. Gerando READMEs multi-idioma."
+    next_steps:
+      - command: "*create-readme"
+        description: "Generate README in 6 languages"
+        priority: 1
+
+  readmes_created:
+    trigger: "6 README files generated with identical structure"
+    confidence: 0.90
+    greeting_message: "READMEs gerados. Iniciando deploy."
+    next_steps:
+      - command: "*deploy-squad"
+        description: "Deploy squad to AIOS project and enable commands"
+        priority: 1
+
+  deploy_complete:
+    trigger: "squad deployed and slash commands enabled"
+    confidence: 0.90
+    greeting_message: "Deploy completo. Pipeline finalizado."
+    next_steps:
+      - command: "*publish-squad"
+        description: "Publish squad to squads.sh marketplace (optional)"
+        priority: 1
+
+  pipeline_complete:
+    trigger: "all phases completed successfully"
+    confidence: 0.95
+    greeting_message: "Pipeline completo. Squad pronto para publicação."
+    next_steps:
+      - command: "*publish-squad"
+        description: "Publish squad to squads.sh marketplace (optional)"
+        priority: 1

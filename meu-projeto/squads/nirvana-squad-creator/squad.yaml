@@ -1,0 +1,66 @@
+name: nirvana-squad-creator
+version: 1.0.0
+description: "Gera squads AIOS otimizados a partir de linguagem natural — pipeline de 9 fases com análise, geração, otimização, validação, README multi-idioma, deploy e publicação no squads.sh"
+author: "Luiz Gustavo Vieira Rodrigues <@gutomec>"
+license: MIT
+slashPrefix: nsc
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - squad-analyzer.md
+    - squad-agent-creator.md
+    - squad-task-creator.md
+    - squad-workflow-creator.md
+    - squad-optimizer.md
+    - squad-validator.md
+    - squad-readme-creator.md
+    - squad-publisher.md
+    - squad-orchestrator.md
+  tasks:
+    - analyze-requirements.md
+    - create-agents.md
+    - create-tasks.md
+    - create-workflows.md
+    - optimize-squad.md
+    - validate-squad.md
+    - create-multilingual-readme.md
+    - deploy-squad.md
+    - publish-squad.md
+    - manage-state.md
+  workflows:
+    - squad-generation-pipeline.yaml
+    - squad-publish-flow.yaml
+  checklists:
+    - squad-generation-quality-gate.md
+    - pre-publish-checklist.md
+  templates:
+    - agent.template.md
+    - task.template.md
+    - workflow.template.md
+    - squad-yaml.template.md
+  tools: []
+  scripts:
+    - squad-tools.cjs
+
+config:
+  extends: none
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  squads: []
+
+tags:
+  - squad-creator
+  - meta-tool
+  - aios
+  - multi-agent
+  - claude-code
+  - pipeline
+  - automation

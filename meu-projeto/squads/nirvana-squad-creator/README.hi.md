@@ -1,0 +1,112 @@
+# Nirvana Squad Creator
+
+> प्राकृतिक भाषा से अनुकूलित AIOS squad बनाता है — विश्लेषण, निर्माण, अनुकूलन, सत्यापन, बहुभाषी README, डिप्लॉय और squads.sh प्रकाशन सहित 9 चरणों की पाइपलाइन।
+
+## इंस्टॉलेशन
+
+```bash
+npx squads add gutomec/squads-sh-aios/nirvana-squad-creator
+```
+
+## यह क्या करता है
+
+Nirvana Squad Creator एक **मेटा-टूल** है: एक AIOS squad जो अन्य AIOS squad बनाता है। प्राकृतिक भाषा में दिए गए उद्देश्य से, यह एक पूर्ण और अनुकूलित squad तैयार करता है जिसमें शामिल हैं:
+
+- **एजेंट** — व्यक्तित्व, archetype और commands के साथ (AGENT-PERSONALIZATION-STANDARD-V1)
+- **टास्क** — स्पष्ट इनपुट/आउटपुट अनुबंधों के साथ (TASK-FORMAT-SPECIFICATION-V1)
+- **वर्कफ़्लो** — स्वचालित पैटर्न चयन और transitions के साथ
+- **कॉन्फ़िग** — डोमेन के अनुसार (coding-standards, tech-stack, source-tree)
+- **README** — 6 भाषाओं में (PT-BR, en, zh, hi, es, ar)
+- **प्रकाशन** — squads.sh मार्केटप्लेस पर
+
+शून्य अनावश्यक एजेंट। 6 श्रेणियों में सत्यापन। slash commands सक्षम करने के साथ स्वचालित डिप्लॉय।
+
+## पाइपलाइन — 9 चरण
+
+| चरण | एजेंट | भूमिका | मॉडल |
+|------|--------|--------|-------|
+| 0 | ऑर्केस्ट्रेटर | इनपुट एकत्र करता है, सत्र आरंभ करता है | — |
+| 1 | 🔍 Analyzer | आवश्यकताओं का विश्लेषण, component-registry बनाता है | Sonnet |
+| 2 | 🏗️ AgentCreator | AIOS एजेंट परिभाषाएँ बनाता है | Opus |
+| 3 | 📋 TaskCreator | इनपुट/आउटपुट अनुबंधों के साथ टास्क बनाता है | Opus |
+| 4 | 🔄 WorkflowCreator | वर्कफ़्लो, squad.yaml, कॉन्फ़िग बनाता है | Opus |
+| 5 | ⚡ Optimizer | AgentDropout, क्रॉस-रेफ़रेंस, नामकरण | Opus |
+| 6 | ✅ Validator | 6 श्रेणियों में AIOS सत्यापन | Sonnet |
+| 7 | 🌐 ReadmeCreator | 6 भाषाओं में README | Opus |
+| 8 | — Deploy | AIOS प्रोजेक्ट में डिप्लॉय, commands सक्षम | ऑर्केस्ट्रेटर |
+| 9 | 🚀 Publisher | squads.sh पर प्रकाशन (वैकल्पिक) | ऑर्केस्ट्रेटर |
+
+## एजेंट
+
+| आइकन | नाम | Archetype | ज़िम्मेदारी |
+|-------|------|-----------|-------------|
+| 🔍 | Analyzer | Guardian | उद्देश्य को डोमेन, क्षमताओं और भूमिकाओं में विभाजित करता है |
+| 🏗️ | AgentCreator | Builder | persona_profile के साथ एजेंट परिभाषाएँ बनाता है |
+| 📋 | TaskCreator | Builder | श्रृंखलित इनपुट/आउटपुट अनुबंधों के साथ टास्क बनाता है |
+| 🔄 | WorkflowCreator | Flow_Master | वर्कफ़्लो, squad.yaml, कॉन्फ़िग और README बनाता है |
+| ⚡ | Optimizer | Balancer | अनावश्यकताएँ हटाता है, क्रॉस-रेफ़रेंस ठीक करता है |
+| ✅ | Validator | Guardian | 6 AIOS विनिर्देश श्रेणियों के विरुद्ध सत्यापन |
+| 🌐 | ReadmeCreator | Builder | PT-BR + 5 अनुवादों में README बनाता है |
+| 🚀 | Publisher | Flow_Master | squads.sh मार्केटप्लेस पर प्रकाशन का मार्गदर्शन |
+
+## टास्क
+
+| टास्क | ज़िम्मेदार | Atomic Layer |
+|-------|------------|-------------|
+| `analyzeRequirements()` | Analyzer | Organism |
+| `createAgents()` | AgentCreator | Organism |
+| `createTasks()` | TaskCreator | Organism |
+| `createWorkflows()` | WorkflowCreator | Organism |
+| `optimizeSquad()` | Optimizer | Organism |
+| `validateSquad()` | Validator | Organism |
+| `createMultilingualReadme()` | ReadmeCreator | Organism |
+| `deploySquad()` | ऑर्केस्ट्रेटर | Organism |
+| `publishSquad()` | Publisher | Molecule |
+| `manageState()` | ऑर्केस्ट्रेटर | Molecule |
+
+## वर्कफ़्लो
+
+### squad_generation_pipeline
+9 चरणों की मुख्य पाइपलाइन — आवश्यकता विश्लेषण से प्रकाशन तक।
+```
+[Analyzer] → [AgentCreator] → [TaskCreator] → [WorkflowCreator] → [Optimizer] → [Validator] → [ReadmeCreator] → Deploy → [Publisher]
+```
+
+### squad_publish_flow
+किसी मौजूदा squad को squads.sh पर प्रकाशित करने के लिए स्वतंत्र प्रवाह।
+```
+[Validator] → [Publisher]
+```
+
+## कॉन्फ़िगरेशन
+
+- `config/coding-standards.md` — नामकरण नियम, प्रारूप नियम, भाषा
+- `config/tech-stack.md` — Node.js, AIOS Core, Claude Code, YAML/Markdown
+- `config/source-tree.md` — squad की डायरेक्टरी संरचना
+
+## उपयोग
+
+### पूर्ण पाइपलाइन
+```bash
+/SQUADS:nsc:squad-analyzer
+```
+
+### व्यक्तिगत एजेंट
+```
+/SQUADS:nsc:squad-analyzer          — आवश्यकता विश्लेषण
+/SQUADS:nsc:squad-agent-creator     — एजेंट निर्माण
+/SQUADS:nsc:squad-task-creator      — टास्क निर्माण
+/SQUADS:nsc:squad-workflow-creator  — वर्कफ़्लो और squad.yaml
+/SQUADS:nsc:squad-optimizer         — अनुकूलन
+/SQUADS:nsc:squad-validator         — सत्यापन
+/SQUADS:nsc:squad-readme-creator    — बहुभाषी README
+/SQUADS:nsc:squad-publisher         — प्रकाशन
+```
+
+## लेखक
+
+**Luiz Gustavo Vieira Rodrigues** ([@gutomec](https://github.com/gutomec))
+
+## लाइसेंस
+
+MIT

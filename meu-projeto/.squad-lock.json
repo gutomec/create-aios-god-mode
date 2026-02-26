@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "squads": {
+    "aios-forge-squad": {
+      "source": "registry:aios-forge-squad",
+      "squad": "aios-forge-squad",
+      "version": "1.0.2",
+      "hash": "605626078f3eef19",
+      "installedAt": "2026-02-26T20:09:18.748Z",
+      "agents": [
+        "aios-architect",
+        "aios-catalyst",
+        "aios-forge",
+        "aios-nexus",
+        "aios-oracle",
+        "aios-scout",
+        "aios-sentinel"
+      ],
+      "aiosActivated": true,
+      "aiosPrefix": "afs"
+    },
+    "nirvana-squad-creator": {
+      "source": "gutomec/nirvana-squad-creator/nirvana-squad-creator",
+      "squad": "nirvana-squad-creator",
+      "version": "1.0.0",
+      "hash": "9e43831a028541b2",
+      "installedAt": "2026-02-26T20:09:38.367Z",
+      "agents": [
+        "squad-agent-creator",
+        "squad-analyzer",
+        "squad-optimizer",
+        "squad-orchestrator",
+        "squad-publisher",
+        "squad-readme-creator",
+        "squad-task-creator",
+        "squad-validator",
+        "squad-workflow-creator"
+      ],
+      "aiosActivated": true,
+      "aiosPrefix": "nsc"
+    }
+  }
+}

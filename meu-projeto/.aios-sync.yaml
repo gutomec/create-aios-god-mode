@@ -1,0 +1,12 @@
+active_ides:
+  - claude
+squad_aliases:
+  aios-forge-squad: afs
+  nirvana-squad-creator: nsc
+sync_mappings:
+  squad_agents:
+    source: 'squads/*/agents/'
+    destinations:
+      claude:
+        - path: '.claude/commands/SQUADS/{squad_alias}/'
+          format: 'md'

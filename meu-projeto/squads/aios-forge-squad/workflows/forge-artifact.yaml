@@ -1,0 +1,165 @@
+# Workflow: forge_artifact (pipeline pattern)
+# Pipeline completo de criação de artefatos AIOS — desde análise até integração
+
+workflow_name: forge_artifact
+description: >
+  Pipeline completo de criação de qualquer artefato AIOS — análise de requisitos,
+  design arquitetural (se complexo), criação do artefato, validação constitucional,
+  otimização opcional e integração/deploy no projeto.
+
+agent_sequence:
+  - aios-oracle
+  - aios-architect
+  - aios-forge
+  - aios-sentinel
+  - aios-catalyst
+  - aios-nexus
+
+key_commands:
+  - "*forge"
+  - "*create-agent"
+  - "*create-task"
+  - "*create-workflow"
+  - "*create-skill"
+  - "*create-squad"
+
+trigger_threshold: 1
+typical_duration: "5-20 minutes"
+
+# Classificação de complexidade para decisão de skip
+complexity_classification:
+  simple:
+    description: "Artefato único, padrão conhecido, sem dependências externas"
+    skip_phases: [2, 5, 6]
+    examples:
+      - "Criar task simples com template existente"
+      - "Criar rule file com padrão conhecido"
+  standard:
+    description: "Artefato com dependências, requer design mínimo"
+    skip_phases: [5]
+    examples:
+      - "Criar agente com comandos e tasks associadas"
+      - "Criar workflow com 3-4 fases"
+  complex:
+    description: "Múltiplos artefatos, arquitetura necessária, integração profunda"
+    skip_phases: []
+    examples:
+      - "Criar squad completo com agentes, tasks e workflows"
+      - "Criar skill com múltiplos handlers e integrações MCP"
+
+success_indicators:
+  - "Artefato criado segue formato AIOS correto para seu tipo"
+  - "Validação constitucional passou nos 6 artigos"
+  - "Referências cruzadas são válidas (dependências existem)"
+  - "Compliance IDS verificada (sem duplicatas, REUSE > ADAPT > CREATE)"
+  - "Artefato integrado no projeto (se fase 6 executada)"
+  - "Encoding UTF-8 com acentuação PT-BR correta"
+
+transitions:
+  # Fase 1: Oracle analisa requisito e roteia
+  analysis_complete:
+    trigger: "Oracle analisou o requisito e determinou tipo, complexidade e rota"
+    confidence: 0.90
+    greeting_message: "Análise concluída. Tipo: {artifactType}, Complexidade: {complexity}."
+    next_steps:
+      - command: "*analyze-component"
+        description: "Analisar contexto do componente e dependências"
+        priority: 1
+    outputs:
+      - artifactType: "Tipo do artefato identificado"
+      - complexity: "Classificação de complexidade (simple|standard|complex)"
+      - routingDecision: "Próximo agente e fase"
+
+  # Fase 2: Architect projeta (se complexo)
+  design_complete:
+    trigger: "Architect completou design arquitetural do artefato"
+    confidence: 0.85
+    greeting_message: "Design arquitetural concluído. Especificações prontas para criação."
+    skip_when: "complexity == simple"
+    next_steps:
+      - command: "*create-{artifactType}"
+        description: "Criar artefato conforme especificações do Architect"
+        priority: 1
+    outputs:
+      - designSpec: "Especificação arquitetural do artefato"
+      - dependencies: "Lista de dependências identificadas"
+      - constraints: "Restrições e limites definidos"
+
+  # Fase 3: Forge cria o artefato
+  artifact_created:
+    trigger: "Forge criou o artefato seguindo formato AIOS e especificações"
+    confidence: 0.90
+    greeting_message: "Artefato criado. Encaminhando para validação."
+    next_steps:
+      - command: "*validate-artifact"
+        description: "Validar artefato contra 5 camadas de verificação"
+        priority: 1
+    outputs:
+      - artifactPath: "Caminho do artefato criado"
+      - artifactType: "Tipo do artefato criado"
+
+  # Fase 4: Sentinel valida (obrigatória)
+  validation_passed:
+    trigger: "Sentinel validou artefato com veredito PASSED ou CONCERNS"
+    confidence: 0.95
+    greeting_message: "Validação aprovada. Veredito: {verdict}."
+    next_steps:
+      - command: "*optimize-component"
+        description: "Otimizar artefato (se complexidade standard ou complex)"
+        priority: 1
+      - command: "*integrate-config"
+        description: "Integrar artefato no projeto (se skip otimização)"
+        priority: 2
+    outputs:
+      - validationReport: "Relatório de validação"
+      - verdict: "PASSED ou CONCERNS"
+
+  validation_failed:
+    trigger: "Sentinel validou artefato com veredito FAILED"
+    confidence: 0.95
+    greeting_message: "Validação falhou. Retornando para correção."
+    next_steps:
+      - command: "*forge"
+        description: "Recriar artefato corrigindo issues identificadas"
+        priority: 1
+    outputs:
+      - validationReport: "Relatório com issues para correção"
+
+  # Fase 5: Catalyst otimiza (opcional)
+  optimization_complete:
+    trigger: "Catalyst otimizou o artefato com métricas melhoradas"
+    confidence: 0.85
+    greeting_message: "Otimização concluída. Métricas melhoradas em {delta}%."
+    skip_when: "complexity == simple"
+    next_steps:
+      - command: "*integrate-config"
+        description: "Integrar artefato otimizado no projeto"
+        priority: 1
+    outputs:
+      - optimizedArtifact: "Artefato otimizado"
+      - optimizationReport: "Relatório de otimização com deltas"
+
+  # Fase 6: Nexus integra/deploia (opcional)
+  integration_complete:
+    trigger: "Nexus integrou artefato no projeto com sucesso"
+    confidence: 0.90
+    greeting_message: "Integração concluída. Artefato disponível no projeto."
+    skip_when: "complexity == simple AND no deploy requested"
+    next_steps: []
+    outputs:
+      - integrationLog: "Log de integração com instruções de rollback"
+      - configResult: "Estado final da configuração"
+
+  # Terminal: Pipeline completo
+  pipeline_complete:
+    trigger: "Todas as fases executadas com sucesso"
+    confidence: 0.95
+    greeting_message: "Pipeline forge_artifact concluído com sucesso."
+    next_steps: []
+
+# Regras de re-execução
+retry_policy:
+  max_retries_per_phase: 2
+  on_validation_failure: "Retornar à Fase 3 (Forge) com feedback do Sentinel"
+  on_optimization_failure: "Prosseguir com versão não-otimizada"
+  on_integration_failure: "Gerar instruções manuais de integração"
