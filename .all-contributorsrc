@@ -1,0 +1,27 @@
+{
+  "projectName": "create-aios-god-mode",
+  "projectOwner": "gutomec",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": ["README.md"],
+  "imageSize": 80,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "gutomec",
+      "name": "Guto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4014465?v=4",
+      "profile": "https://github.com/gutomec",
+      "contributions": ["code", "doc", "maintenance", "projectManagement"]
+    },
+    {
+      "login": "Renatoz",
+      "name": "Renato",
+      "avatar_url": "https://avatars.githubusercontent.com/u/189273218?v=4",
+      "profile": "https://github.com/Renatoz",
+      "contributions": ["code"]
+    }
+  ],
+  "contributorsPerLine": 7
+}

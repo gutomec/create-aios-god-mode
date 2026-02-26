@@ -732,6 +732,25 @@ Avaliação de débito técnico em 10 fases para codebases existentes com coleta
 
 ---
 
+## 👨‍💻 Contribuidores
+
+Obrigado a essas pessoas incríveis ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gutomec"><img src="https://avatars.githubusercontent.com/u/4014465?v=4" width="80px;" alt="Guto"/><br /><sub><b>Guto</b></sub></a><br /><a href="https://github.com/gutomec/create-aios-god-mode/commits?author=gutomec" title="Code">💻</a> <a href="https://github.com/gutomec/create-aios-god-mode/commits?author=gutomec" title="Documentation">📖</a> <a href="#maintenance-gutomec" title="Maintenance">🚧</a> <a href="#projectManagement-gutomec" title="Project Management">📆</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Renatoz"><img src="https://avatars.githubusercontent.com/u/189273218?v=4" width="80px;" alt="Renato"/><br /><sub><b>Renato</b></sub></a><br /><a href="https://github.com/gutomec/create-aios-god-mode/commits?author=Renatoz" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Este projeto segue a especificação [all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de qualquer tipo são bem-vindas!
+
+---
+
 ## 📄 Licença
 
 [MIT](LICENSE) © [gutomec](https://github.com/gutomec)
