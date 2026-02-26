@@ -6,7 +6,7 @@
       "squad": "aios-forge-squad",
       "version": "1.0.2",
       "hash": "605626078f3eef19",
-      "installedAt": "2026-02-26T20:09:18.748Z",
+      "installedAt": "2026-02-26T20:19:59.024Z",
       "agents": [
         "aios-architect",
         "aios-catalyst",
@@ -24,7 +24,7 @@
       "squad": "nirvana-squad-creator",
       "version": "1.0.0",
       "hash": "9e43831a028541b2",
-      "installedAt": "2026-02-26T20:09:38.367Z",
+      "installedAt": "2026-02-26T20:20:16.102Z",
       "agents": [
         "squad-agent-creator",
         "squad-analyzer",

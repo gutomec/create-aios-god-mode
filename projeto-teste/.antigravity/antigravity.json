@@ -1,7 +1,7 @@
 {
     "version": "1.0",
-    "project": "meu-projeto",
-    "workspace": "C:/Users/Administrador/OneDrive/Documentos/APP/app-luizao-god/fork/create-aios-god-mode/meu-projeto",
+    "project": "projeto-teste",
+    "workspace": "C:/Users/Administrador/OneDrive/Documentos/APP/app-luizao-god/fork/create-aios-god-mode/projeto-teste",
     "agents": {
         "enabled": true,
         "directory": ".antigravity\\agents",
