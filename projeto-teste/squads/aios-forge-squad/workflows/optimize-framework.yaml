@@ -1,0 +1,168 @@
+# Workflow: optimize_framework (pipeline pattern)
+# Pipeline de otimização e modernização de componentes AIOS existentes
+
+workflow_name: optimize_framework
+description: >
+  Pipeline completo de otimização e modernização de componentes AIOS — desde a
+  recepção do pedido até o deploy das mudanças, incluindo pesquisa de melhores
+  práticas, otimização/modernização, validação e integração.
+
+agent_sequence:
+  - aios-oracle
+  - aios-architect
+  - aios-scout
+  - aios-catalyst
+  - aios-sentinel
+  - aios-nexus
+
+key_commands:
+  - "*improve"
+  - "*optimize"
+  - "*modernize"
+
+trigger_threshold: 1
+typical_duration: "10-25 minutes"
+
+# Tipos de operação suportados
+operation_types:
+  optimize:
+    description: "Melhorar métricas específicas (tokens, speed, quality, context)"
+    primary_agent: aios-catalyst
+    primary_task: optimizeComponent()
+  modernize:
+    description: "Atualizar para padrões mais recentes (format, patterns, dependencies)"
+    primary_agent: aios-catalyst
+    primary_task: modernizeComponent()
+  refactor:
+    description: "Reestruturar mantendo funcionalidade (combina optimize + modernize)"
+    primary_agent: aios-catalyst
+    primary_task: "optimizeComponent() + modernizeComponent()"
+
+success_indicators:
+  - "Métricas da métrica alvo apresentam melhoria mensurável"
+  - "Componente otimizado/modernizado passa na validação completa"
+  - "Compatibilidade retroativa preservada (quando solicitado)"
+  - "Nenhuma referência cruzada quebrada"
+  - "Mudanças deployadas e verificadas no projeto"
+  - "Relatório before/after com deltas quantitativos"
+
+transitions:
+  # Fase 1: Oracle recebe e classifica o pedido
+  request_analyzed:
+    trigger: "Oracle analisou o pedido de otimização e identificou componente, tipo e escopo"
+    confidence: 0.90
+    greeting_message: "Pedido de {operationType} analisado. Componente: {componentPath}."
+    next_steps:
+      - command: "*analyze-component"
+        description: "Architect analisa impacto e projeta plano de otimização"
+        priority: 1
+    outputs:
+      - operationType: "optimize|modernize|refactor"
+      - componentPath: "Caminho do componente alvo"
+      - metric: "Métrica alvo (se optimize)"
+      - scope: "Escopo (se modernize)"
+
+  # Fase 2: Architect analisa impacto e projeta plano
+  impact_analyzed:
+    trigger: "Architect completou análise de impacto e plano de otimização"
+    confidence: 0.85
+    greeting_message: "Análise de impacto concluída. Risco: {riskLevel}. Componentes afetados: {affectedCount}."
+    next_steps:
+      - command: "*research-updates"
+        description: "Scout pesquisa melhores práticas atuais para o tipo de otimização"
+        priority: 1
+    outputs:
+      - impactAnalysis: "Análise de impacto com componentes afetados"
+      - optimizationPlan: "Plano detalhado de otimização"
+      - riskLevel: "LOW|MEDIUM|HIGH"
+      - affectedComponents: "Lista de componentes que serão afetados"
+
+  # Fase 3: Scout pesquisa melhores práticas
+  research_complete:
+    trigger: "Scout pesquisou e compilou melhores práticas atuais para a otimização"
+    confidence: 0.85
+    greeting_message: "Pesquisa de melhores práticas concluída. {findingsCount} findings relevantes."
+    next_steps:
+      - command: "*optimize-component"
+        description: "Catalyst executa otimização/modernização com base no plano e pesquisa"
+        priority: 1
+      - command: "*modernize-component"
+        description: "Catalyst executa modernização (se operationType == modernize)"
+        priority: 1
+    outputs:
+      - researchReport: "Relatório de pesquisa com findings"
+      - bestPractices: "Melhores práticas compiladas"
+
+  # Fase 4: Catalyst executa otimização/modernização
+  optimization_executed:
+    trigger: "Catalyst concluiu otimização ou modernização com relatório de deltas"
+    confidence: 0.90
+    greeting_message: "Otimização executada. Melhoria de {delta}% na métrica {metric}."
+    next_steps:
+      - command: "*validate-artifact"
+        description: "Sentinel valida componente otimizado"
+        priority: 1
+    outputs:
+      - optimizedComponent: "Componente otimizado/modernizado"
+      - optimizationReport: "Relatório com métricas before/after"
+      - migrationLog: "Log de migração (se modernize)"
+
+  # Fase 5: Sentinel valida componente otimizado
+  validation_passed:
+    trigger: "Sentinel validou componente otimizado com veredito PASSED"
+    confidence: 0.95
+    greeting_message: "Validação aprovada. Componente pronto para deploy."
+    next_steps:
+      - command: "*integrate-config"
+        description: "Nexus deploia mudanças no projeto"
+        priority: 1
+    outputs:
+      - validationReport: "Relatório de validação"
+      - verdict: "PASSED"
+
+  validation_failed:
+    trigger: "Sentinel validou componente com veredito FAILED"
+    confidence: 0.95
+    greeting_message: "Validação falhou. Rollback executado. Issues identificadas."
+    next_steps:
+      - command: "*optimize-component"
+        description: "Catalyst reexecuta otimização corrigindo issues"
+        priority: 1
+    outputs:
+      - validationReport: "Relatório com issues para correção"
+
+  # Fase 6: Nexus deploia mudanças
+  deployment_complete:
+    trigger: "Nexus deployou mudanças no projeto e verificou integridade"
+    confidence: 0.90
+    greeting_message: "Deploy concluído. Mudanças ativas no projeto."
+    next_steps: []
+    outputs:
+      - integrationLog: "Log de deploy com instruções de rollback"
+      - configResult: "Estado final do componente no projeto"
+
+  # Terminal: Pipeline completo
+  pipeline_complete:
+    trigger: "Todas as fases executadas com sucesso — componente otimizado e deployado"
+    confidence: 0.95
+    greeting_message: "Pipeline optimize_framework concluído com sucesso."
+    next_steps: []
+
+# Regras de re-execução
+retry_policy:
+  max_retries_per_phase: 2
+  on_validation_failure: "Rollback ao original, reexecutar Fase 4 com feedback do Sentinel"
+  on_optimization_failure: "Retornar original com sugestões de otimização manual"
+  on_deployment_failure: "Rollback automático, gerar instruções manuais"
+
+# Regras de rollback
+rollback_policy:
+  preserve_backup: true
+  rollback_triggers:
+    - "Validação FAILED após 2 tentativas"
+    - "Backward compatibility quebrada"
+    - "Referências cruzadas inválidas após otimização"
+  rollback_actions:
+    - "Restaurar componente original do backup"
+    - "Gerar relatório de falha com sugestões"
+    - "Notificar Oracle para reclassificação"

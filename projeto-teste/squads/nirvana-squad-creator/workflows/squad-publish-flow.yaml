@@ -1,0 +1,46 @@
+# Workflow: squad_publish_flow (conditional pattern)
+# Fluxo standalone para publicação de um squad existente no squads.sh marketplace
+
+workflow_name: squad_publish_flow
+description: "Fluxo standalone para publicação de um squad existente no squads.sh marketplace"
+
+agent_sequence:
+  - squad-validator
+  - squad-publisher
+
+key_commands:
+  - "*publish-squad"
+
+trigger_threshold: 1
+typical_duration: "2-5 minutes"
+
+success_indicators:
+  - "Squad validado com campos obrigatórios presentes"
+  - "Usuário autenticado no squads.sh"
+  - "Publicação confirmada pelo usuário"
+  - "URL do marketplace retornada"
+
+transitions:
+  pre_publish_validation:
+    trigger: "publish command invoked for a squad directory"
+    confidence: 0.90
+    greeting_message: "Validando squad antes da publicação."
+    next_steps:
+      - command: "*validate-squad"
+        description: "Quick validation of squad.yaml and required files"
+        priority: 1
+
+  validation_passed:
+    trigger: "squad passes pre-publish validation"
+    confidence: 0.95
+    greeting_message: "Validação OK. Iniciando publicação."
+    next_steps:
+      - command: "*publish-squad"
+        description: "Guide user through squads.sh publication"
+        priority: 1
+
+  published:
+    trigger: "squad successfully published to marketplace"
+    confidence: 0.95
+    greeting_message: "Squad publicado com sucesso no squads.sh!"
+    next_steps: []

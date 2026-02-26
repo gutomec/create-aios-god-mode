@@ -1,0 +1,79 @@
+# ============================================================================
+# AIOS Forge Squad — Squad Manifest
+# Squad supremo de desenvolvimento, otimização e evolução do AIOS
+# ============================================================================
+
+name: aios-forge-squad
+version: 1.0.2
+slashPrefix: afs
+author: "Luiz Gustavo Vieira Rodrigues <@gutomec>"
+aios:
+  minVersion: "2.1.0"
+  type: squad
+license: MIT
+
+description: "Squad supremo de desenvolvimento, otimização e evolução do AIOS — domínio total do framework, Claude Code e auto-atualização contínua. Capaz de criar, validar, otimizar e modernizar qualquer artefato AIOS."
+
+# ============================================================================
+# Components
+# ============================================================================
+
+components:
+  agents:
+    - aios-oracle.md
+    - aios-architect.md
+    - aios-forge.md
+    - aios-sentinel.md
+    - aios-catalyst.md
+    - aios-nexus.md
+    - aios-scout.md
+
+  tasks:
+    - analyze-aios-component.md
+    - create-agent.md
+    - create-task.md
+    - create-workflow.md
+    - create-skill.md
+    - create-squad.md
+    - create-template.md
+    - validate-artifact.md
+    - audit-framework.md
+    - optimize-component.md
+    - modernize-component.md
+    - integrate-configuration.md
+    - research-updates.md
+    - self-update-knowledge.md
+
+  workflows:
+    - forge-artifact.yaml
+    - optimize-framework.yaml
+    - self-update.yaml
+
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+
+# ============================================================================
+# Configuration
+# ============================================================================
+
+config:
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+# ============================================================================
+# Metadata
+# ============================================================================
+
+tags:
+  - aios
+  - framework-development
+  - meta-tool
+  - optimizer
+  - modernizer
+  - self-update
+  - claude-code
+  - multi-agent
+  - full-stack

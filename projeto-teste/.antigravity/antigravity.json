@@ -1,0 +1,26 @@
+{
+    "version": "1.0",
+    "project": "projeto-teste",
+    "workspace": "C:/Users/Administrador/OneDrive/Documentos/APP/app-luizao-god/fork/create-aios-god-mode/projeto-teste",
+    "agents": {
+        "enabled": true,
+        "directory": ".antigravity\\agents",
+        "default": "aios-master"
+    },
+    "rules": {
+        "enabled": true,
+        "file": ".antigravity\\rules.md"
+    },
+    "features": {
+        "storyDrivenDevelopment": true,
+        "agentActivation": true,
+        "workflowAutomation": true
+    },
+    "paths": {
+        "stories": "docs/stories",
+        "prd": "docs/prd",
+        "architecture": "docs/architecture",
+        "tasks": ".aios-core/tasks",
+        "workflows": ".aios-core/workflows"
+    }
+}

@@ -1,0 +1,176 @@
+# Workflow: self_update (pipeline pattern)
+# Pipeline de auto-atualização da base de conhecimento do AIOS Forge Squad
+
+workflow_name: self_update
+description: >
+  Pipeline de auto-atualização do AIOS Forge Squad — pesquisa atualizações sobre
+  Claude Code e AIOS, revisa e prioriza findings, atualiza base de conhecimento
+  do squad e valida consistência. Permite que o squad evolua continuamente.
+
+agent_sequence:
+  - aios-scout
+  - aios-scout
+  - aios-oracle
+  - aios-forge
+  - aios-sentinel
+
+key_commands:
+  - "*self-update"
+
+trigger_threshold: 1
+typical_duration: "10-20 minutes"
+
+# Configuração de frequência
+schedule:
+  recommended_frequency: "Semanal ou antes de operações críticas"
+  minimum_interval: "24 horas entre execuções (exceto forceRefresh)"
+  auto_trigger_on:
+    - "Início de sessão após 7+ dias de inatividade"
+    - "Antes de operações que dependem de padrões atuais"
+    - "Quando agente reporta informação potencialmente desatualizada"
+
+success_indicators:
+  - "Base de conhecimento atualizada com informações mais recentes"
+  - "Nenhuma contradição na base de conhecimento"
+  - "Update log completo com timestamps e fontes verificáveis"
+  - "Todos os findings classificados (NEW, UPDATED, CONFIRMED, DEPRECATED)"
+  - "Knowledge base validada por Sentinel sem inconsistências"
+  - "Datetime de referência obtido de fonte confiável"
+
+transitions:
+  # Fase 1: Scout verifica datetime atual
+  datetime_verified:
+    trigger: "Scout obteve datetime atual via worldtimeapi.org/api/timezone/America/Sao_Paulo"
+    confidence: 0.95
+    greeting_message: "Datetime verificado: {currentDatetime}. Última atualização: {lastUpdate}."
+    next_steps:
+      - command: "*research-updates"
+        description: "Scout pesquisa atualizações do Claude Code"
+        priority: 1
+    outputs:
+      - currentDatetime: "Datetime atual verificado (ISO 8601)"
+      - lastUpdateDatetime: "Datetime da última atualização do squad"
+      - updatePeriod: "Período a ser pesquisado"
+
+  # Fase 2: Scout pesquisa atualizações do Claude Code
+  claude_code_researched:
+    trigger: "Scout completou pesquisa de atualizações do Claude Code"
+    confidence: 0.85
+    greeting_message: "Pesquisa Claude Code concluída. {findingsCount} findings encontrados."
+    next_steps:
+      - command: "*research-updates"
+        description: "Scout pesquisa atualizações do ecossistema AIOS"
+        priority: 1
+    outputs:
+      - claudeCodeReport: "Relatório de pesquisa Claude Code"
+      - claudeCodeChangelog: "Changelog de mudanças no Claude Code"
+      - findingsCount: "Número de findings"
+
+  # Fase 3: Scout pesquisa atualizações do AIOS
+  aios_researched:
+    trigger: "Scout completou pesquisa de atualizações do ecossistema AIOS"
+    confidence: 0.85
+    greeting_message: "Pesquisa AIOS concluída. {findingsCount} findings encontrados. Total acumulado: {totalFindings}."
+    next_steps:
+      - command: "*review-findings"
+        description: "Oracle revisa e prioriza todos os findings"
+        priority: 1
+    outputs:
+      - aiosReport: "Relatório de pesquisa AIOS"
+      - aiosChangelog: "Changelog de mudanças no AIOS"
+      - totalFindings: "Total de findings combinados"
+
+  # Fase 4: Oracle revisa e prioriza findings
+  findings_reviewed:
+    trigger: "Oracle revisou todos os findings e definiu prioridades de atualização"
+    confidence: 0.90
+    greeting_message: "Revisão concluída. {actionableCount} findings acionáveis priorizados."
+    next_steps:
+      - command: "*update-knowledge"
+        description: "Forge atualiza arquivos da base de conhecimento"
+        priority: 1
+    outputs:
+      - prioritizedFindings: "Findings priorizados por impacto"
+      - updatePlan: "Plano de atualização com ordem de aplicação"
+      - actionableCount: "Número de findings que requerem atualização"
+      - discardedCount: "Número de findings descartados (irrelevantes ou duplicados)"
+
+  # Fase 5: Forge atualiza base de conhecimento
+  knowledge_updated:
+    trigger: "Forge aplicou atualizações incrementais à base de conhecimento"
+    confidence: 0.90
+    greeting_message: "Base de conhecimento atualizada. {newCount} novos, {updatedCount} atualizados, {deprecatedCount} deprecated."
+    next_steps:
+      - command: "*validate-knowledge"
+        description: "Sentinel valida consistência da base de conhecimento"
+        priority: 1
+    outputs:
+      - knowledgeBase: "Base de conhecimento atualizada"
+      - updateLog: "Log detalhado de todas as mudanças aplicadas"
+      - stats:
+          new: "Número de entradas novas"
+          updated: "Número de entradas atualizadas"
+          confirmed: "Número de entradas confirmadas"
+          deprecated: "Número de entradas deprecated"
+
+  # Fase 6: Sentinel valida consistência
+  validation_passed:
+    trigger: "Sentinel validou consistência da base de conhecimento sem contradições"
+    confidence: 0.95
+    greeting_message: "Validação aprovada. Base de conhecimento consistente e atualizada."
+    next_steps: []
+    outputs:
+      - validationReport: "Relatório de validação da knowledge base"
+      - verdict: "PASSED"
+
+  validation_failed:
+    trigger: "Sentinel encontrou inconsistências na base de conhecimento"
+    confidence: 0.95
+    greeting_message: "Inconsistências detectadas. Retornando para correção."
+    next_steps:
+      - command: "*update-knowledge"
+        description: "Forge corrige inconsistências identificadas pelo Sentinel"
+        priority: 1
+    outputs:
+      - validationReport: "Relatório com inconsistências encontradas"
+      - verdict: "FAILED"
+      - inconsistencies: "Lista de contradições e entradas problemáticas"
+
+  # Terminal: Pipeline completo
+  pipeline_complete:
+    trigger: "Todas as fases executadas — base de conhecimento atualizada e validada"
+    confidence: 0.95
+    greeting_message: "Pipeline self_update concluído. Squad atualizado com conhecimento de {currentDatetime}."
+    next_steps: []
+
+# Regras de re-execução
+retry_policy:
+  max_retries_per_phase: 2
+  on_research_failure: "Continuar com resultados parciais, marcar gaps"
+  on_validation_failure: "Forge corrige inconsistências, Sentinel revalida (max 2 ciclos)"
+  on_total_failure: "Preservar knowledge base anterior, gerar relatório de falha"
+
+# Fontes de pesquisa
+research_sources:
+  claude_code:
+    primary:
+      - url: "https://code.claude.com/docs"
+        type: "documentation"
+      - url: "https://www.anthropic.com/news"
+        type: "announcements"
+    secondary:
+      - url: "https://github.com/anthropics"
+        type: "repositories"
+  aios:
+    primary:
+      - url: "https://github.com/SynkraAI/aios-core"
+        type: "repository"
+    secondary:
+      - url: "npm registry @synkra"
+        type: "packages"
+
+# Armazenamento
+storage:
+  knowledge_base: "config/knowledge-base.md"
+  update_logs: ".aios/update-logs/"
+  research_cache: ".aios/research-cache/"
