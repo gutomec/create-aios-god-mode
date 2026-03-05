@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>Monte um sistema completo de desenvolvimento orquestrado por IA em segundos.</strong><br>
-  <sub>6 AI Tools. 10 agentes de IA. 22 skills. 3 servidores MCP. Um único comando.</sub>
+  <sub>6 AI Tools. 10 agentes de IA. find-skills. 3 servidores MCP. Um único comando.</sub>
 </p>
 
 <p align="center">
@@ -20,8 +20,7 @@
   <a href="#-o-que-você-recebe">O Que Você Recebe</a> ·
   <a href="#-funcionalidades">Funcionalidades</a> ·
   <a href="#-comandos">Comandos</a> ·
-  <a href="#-agentes-de-ia">Agentes</a> ·
-  <a href="#-skills-do-ecossistema">Skills</a>
+  <a href="#-agentes-de-ia">Agentes</a>
 </p>
 
 <br>
@@ -45,13 +44,7 @@ Este projeto existe graças ao trabalho incrível de diversas comunidades e cria
 | [**Synkra AIOS**](https://github.com/SynkraAI/aios-core) | [**Pedro Valério**](https://github.com/Pedrovaleriolopez) / [SynkraAI](https://github.com/SynkraAI) | Framework core — toda a arquitetura de agentes, constitution, workflows, tasks, templates e o sistema de squads que este CLI instala e configura |
 | [squads.sh](https://squads.sh) | [gutomec](https://github.com/gutomec) | Plataforma de gerenciamento de squads para projetos AIOS |
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | [Anthropic](https://www.anthropic.com) | Motor de IA que torna tudo possível — agentes, skills e MCP rodam sobre o Claude Code |
-| [Skills CLI](https://github.com/anthropics/skills) | [Anthropic](https://github.com/anthropics) | Skills oficiais: `frontend-design`, `pdf`, `docx`, `xlsx`, `pptx` |
-| [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills) | [Vercel](https://github.com/vercel-labs) | Skills: `web-design-guidelines`, `vercel-react-best-practices`, `vercel-composition-patterns` |
-| [wshobson/agents](https://github.com/wshobson/agents) | [wshobson](https://github.com/wshobson) | Skills: `stripe-integration`, `api-design-principles`, `architecture-patterns`, `nodejs-backend-patterns`, `error-handling-patterns`, `github-actions-templates`, `deployment-pipeline-design`, `prompt-engineering-patterns` |
-| [Marketing Skills](https://github.com/coreyhaines31/marketingskills) | [coreyhaines31](https://github.com/coreyhaines31) | Skills: `seo-audit`, `programmatic-seo`, `schema-markup` |
-| [Inference Skills](https://github.com/inference-sh/skills) | [inference-sh](https://github.com/inference-sh) | Skills: `ai-video-generation`, `ai-image-generation` |
-| [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | [nextlevelbuilder](https://github.com/nextlevelbuilder) | Skill: `ui-ux-pro-max` |
-| [Clean Code Skill](https://github.com/ratacat/claude-skills) | [ratacat](https://github.com/ratacat) | Skill: `clean-code` |
+| [Vercel Labs Skills](https://github.com/vercel-labs/skills) | [Vercel](https://github.com/vercel-labs) | Skill `find-skills` — busca de skills sob demanda |
 | [nano-banana-pro](https://www.npmjs.com/package/@rafarafarafa/nano-banana-pro-mcp) | [rafarafarafa](https://github.com/rafarafarafa) | Servidor MCP para geração de imagens com Gemini |
 | [Context7](https://github.com/upstash/context7-mcp) | [Upstash](https://github.com/upstash) | Servidor MCP para documentação de bibliotecas ao vivo |
 | [21st.dev Magic](https://github.com/21st-dev/magic) | [21st.dev](https://github.com/21st-dev) | Servidor MCP para busca e geração de componentes UI |
@@ -81,8 +74,8 @@ npx create-aios-god-mode meu-projeto
 <sub>Dev, QA, Architect, PM, PO, SM, Analyst, Data Engineer, UX Designer, DevOps — cada um com persona única e comandos exclusivos</sub>
 </td>
 <td align="center" width="33%">
-<h3>🧩 22 Skills</h3>
-<sub>Design frontend, SEO, clean code, Stripe, CI/CD, geração de imagens/vídeos com IA, processamento de documentos e mais</sub>
+<h3>🧩 find-skills</h3>
+<sub>Busca e instalação de skills sob demanda via <code>find-skills</code> — instale apenas o que você precisa, quando precisa</sub>
 </td>
 <td align="center" width="33%">
 <h3>🔌 3 Servidores MCP</h3>
@@ -428,7 +421,7 @@ Para o planejamento do projeto, utilize suas melhores skills estratégicas. Apó
 - **🤖 Sistema de Agentes** — Ative agentes com `@nome-do-agente`, execute comandos com `*comando`. Protocolo de handoff integrado preserva contexto entre trocas
 - **📖 Desenvolvimento Orientado a Stories** — Todo trabalho flui por stories: `@sm *draft` → `@po *validate` → `@dev *develop` → `@qa *gate`
 - **👥 Sistema de Squads** — Squads multi-agente pré-configurados para workflows de domínios específicos (dev de framework, design de marca, landing pages)
-- **🧩 Ecossistema de Skills** — 22 skills da comunidade instaladas automaticamente: frontend, backend, SEO, pagamentos, documentos, geração com IA
+- **🧩 find-skills** — Busca e instalação de skills sob demanda via `find-skills` do ecossistema Vercel Labs
 - **🔌 Integração MCP** — 3 servidores MCP pré-configurados em `.mcp.json` para geração de imagens com IA, documentação ao vivo e componentes UI
 - **🛡️ Proteção do Framework** — Modelo de 4 camadas com deny rules determinísticas em `settings.json`. Arquivos L1/L2 são imutáveis
 - **🔄 QA Loop** — Ciclo automatizado de revisão-correção: `@qa review → veredito → @dev corrige → re-review` (máx. 5 iterações)
@@ -448,7 +441,7 @@ O instalador executa um **pipeline automatizado de 10 etapas**:
 | 3 | ⚡ **Instalar God Mode** — Baixa personas de agentes, skills e rules do [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) |
 | 4 | 👥 **Instalar squads** — Baixa e configura os pacotes de squads selecionados |
 | 5 | 🔌 **Configurar servidores MCP** — Configura `nano-banana-pro`, `context7`, `21st-dev` em `.mcp.json` |
-| 6 | 🧩 **Instalar skills do ecossistema** — 22 skills de repos da comunidade via `npx skills add` |
+| 6 | 🧩 **Instalar find-skills** — Skill de busca sob demanda via `npx skills add` |
 | 7 | 🚀 **Instalar framework GSD** — [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) para gestão de projetos |
 | 8 | 📦 **Instalar dependências** — Executa `npm install` dentro de `.aios-core/` |
 | 9 | 🗃️ **Inicializar git** — `git init` com commit inicial |
@@ -521,78 +514,6 @@ Todos os agentes são ativados com `@nome-do-agente` e suportam comandos via pre
 
 ---
 
-<details>
-<summary><h2>🧩 Skills do Ecossistema</h2></summary>
-
-22 skills instaladas automaticamente, organizadas por categoria:
-
-#### Design & Frontend
-
-| Skill | Fonte |
-|-------|-------|
-| `ui-ux-pro-max` | nextlevelbuilder/ui-ux-pro-max-skill |
-| `frontend-design` | anthropics/skills |
-| `web-design-guidelines` | vercel-labs/agent-skills |
-| `vercel-react-best-practices` | vercel-labs/agent-skills |
-| `vercel-composition-patterns` | vercel-labs/agent-skills |
-
-#### SEO & Marketing
-
-| Skill | Fonte |
-|-------|-------|
-| `seo-audit` | coreyhaines31/marketingskills |
-| `programmatic-seo` | coreyhaines31/marketingskills |
-| `schema-markup` | coreyhaines31/marketingskills |
-
-#### CI/CD & Deploy
-
-| Skill | Fonte |
-|-------|-------|
-| `github-actions-templates` | wshobson/agents |
-| `deployment-pipeline-design` | wshobson/agents |
-
-#### Pagamentos
-
-| Skill | Fonte |
-|-------|-------|
-| `stripe-integration` | wshobson/agents |
-
-#### Backend & Clean Code
-
-| Skill | Fonte |
-|-------|-------|
-| `nodejs-backend-patterns` | wshobson/agents |
-| `api-design-principles` | wshobson/agents |
-| `architecture-patterns` | wshobson/agents |
-| `error-handling-patterns` | wshobson/agents |
-| `clean-code` | ratacat/claude-skills |
-
-#### Engenharia de Prompts
-
-| Skill | Fonte |
-|-------|-------|
-| `prompt-engineering-patterns` | wshobson/agents |
-
-#### Geração de Mídia com IA
-
-| Skill | Fonte |
-|-------|-------|
-| `ai-video-generation` | inference-sh/skills |
-| `ai-image-generation` | inference-sh/skills |
-
-#### Processamento de Documentos
-
-| Skill | Fonte |
-|-------|-------|
-| `pdf` | anthropics/skills |
-| `docx` | anthropics/skills |
-| `xlsx` | anthropics/skills |
-| `pptx` | anthropics/skills |
-
-</details>
-
----
-
 ## 🔌 Servidores MCP
 
 Pré-configurados em `.mcp.json` e prontos para uso:
@@ -615,7 +536,7 @@ meu-projeto/
 ├── .claude/
 │   ├── settings.json              # Permissões do Claude Code + deny rules
 │   ├── rules/                     # Regras de workflow, exemplos de tools, autoridade de agentes
-│   ├── skills/                    # God Mode + 22 skills do ecossistema
+│   ├── skills/                    # God Mode + find-skills
 │   └── CLAUDE.md                  # Instruções do projeto para o Claude
 ├── openai.yaml                    # Configuração para Codex (gerado automaticamente)
 ├── AGENTS.md                      # Skills list para Codex (gerado automaticamente)
