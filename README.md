@@ -591,8 +591,6 @@ Ao executar sem `--yes`, o instalador pergunta:
 |--------|--------|--------|
 | **Nome do projeto** | Qualquer nome válido em kebab-case | — |
 | **AI Tool** | `Claude Code` / `Codex` / `Gemini` / `Cursor` / `GitHub Copilot` / `Antigravity` | Claude Code |
-| **Tipo de projeto** | `Greenfield` / `Brownfield` | Greenfield |
-| **Idioma** | `Português (PT-BR)` / `English` | PT-BR |
 | **Squads** | Seleção múltipla dos squads disponíveis | AFS + NSC |
 | **oh-my-claudecode** | `Sim` / `Não` | Sim |
 
