@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>Monte um sistema completo de desenvolvimento orquestrado por IA em segundos.</strong><br>
-  <sub>6 AI Tools. 10 agentes de IA. find-skills. 3 servidores MCP. Um único comando.</sub>
+  <sub>6 AI Tools. 10 agentes de IA. find-skills. oh-my-claudecode. 3 servidores MCP. Um único comando.</sub>
 </p>
 
 <p align="center">
@@ -49,7 +49,7 @@ Este projeto existe graças ao trabalho incrível de diversas comunidades e cria
 | [Context7](https://github.com/upstash/context7-mcp) | [Upstash](https://github.com/upstash) | Servidor MCP para documentação de bibliotecas ao vivo |
 | [21st.dev Magic](https://github.com/21st-dev/magic) | [21st.dev](https://github.com/21st-dev) | Servidor MCP para busca e geração de componentes UI |
 | [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) | [get-shit-done](https://github.com/get-shit-done) | Framework GSD para gestão de projetos com Claude Code |
-| [cc-deploy](https://github.com/saadnvd1/cc-deploy) | [saadnvd1](https://github.com/saadnvd1) | Deploy em VPS via Claude Code |
+| [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) | [Sisyphus](https://github.com/Sisyphus) | Orquestração multi-agente para Claude Code |
 
 > [!NOTE]
 > `create-aios-god-mode` é um **instalador e orquestrador** — ele baixa, configura e integra os projetos listados acima. Todo o crédito pelo framework Synkra AIOS pertence a [Pedro Valério](https://github.com/Pedrovaleriolopez) e à organização [SynkraAI](https://github.com/SynkraAI). O crédito pelas skills, MCPs e ferramentas pertence aos respectivos autores. Se você é autor de algum projeto listado e deseja ajustes na atribuição, [abra uma issue](https://github.com/gutomec/create-aios-god-mode/issues).
@@ -426,6 +426,7 @@ Para o planejamento do projeto, utilize suas melhores skills estratégicas. Apó
 - **🛡️ Proteção do Framework** — Modelo de 4 camadas com deny rules determinísticas em `settings.json`. Arquivos L1/L2 são imutáveis
 - **🔄 QA Loop** — Ciclo automatizado de revisão-correção: `@qa review → veredito → @dev corrige → re-review` (máx. 5 iterações)
 - **📋 Spec Pipeline** — Transforma requisitos informais em specs executáveis com seleção de fases baseada em complexidade (3-6 fases)
+- **🔧 oh-my-claudecode** — Orquestração multi-agente opcional via [oh-my-claude-sisyphus](https://www.npmjs.com/package/oh-my-claude-sisyphus)
 - **🔍 Brownfield Discovery** — Avaliação de débito técnico em 10 fases para codebases existentes com coleta de dados multi-agente
 
 ---
@@ -441,10 +442,10 @@ O instalador executa um **pipeline automatizado de 10 etapas**:
 | 3 | ⚡ **Instalar God Mode** — Baixa personas de agentes, skills e rules do [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) |
 | 4 | 👥 **Instalar squads** — Baixa e configura os pacotes de squads selecionados |
 | 5 | 🔌 **Configurar servidores MCP** — Configura `nano-banana-pro`, `context7`, `21st-dev` em `.mcp.json` |
-| 6 | 🧩 **Instalar find-skills** — Skill de busca sob demanda via `npx skills add` |
-| 7 | 🚀 **Instalar framework GSD** — [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) para gestão de projetos |
-| 8 | 📦 **Instalar dependências** — Executa `npm install` dentro de `.aios-core/` |
-| 9 | 🗃️ **Inicializar git** — `git init` com commit inicial |
+| 6 | 🚀 **Instalar framework GSD** — [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) para gestão de projetos |
+| 7 | 🔧 **Instalar oh-my-claudecode** — [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) para orquestração multi-agente (opcional) |
+| 8 | 🧹 **Limpeza e conversão** — Converte estrutura para a ferramenta de IA selecionada |
+| 9 | 📦 **Instalar dependências** — Executa `npm install` dentro de `.aios-core/` |
 | 10 | ✅ **Pronto** — Projeto preparado para desenvolvimento orientado por agentes |
 
 ---
@@ -593,6 +594,7 @@ Ao executar sem `--yes`, o instalador pergunta:
 | **Tipo de projeto** | `Greenfield` / `Brownfield` | Greenfield |
 | **Idioma** | `Português (PT-BR)` / `English` | PT-BR |
 | **Squads** | Seleção múltipla dos squads disponíveis | AFS + NSC |
+| **oh-my-claudecode** | `Sim` / `Não` | Sim |
 
 ---
 
