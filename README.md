@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>Monte um sistema completo de desenvolvimento orquestrado por IA em segundos.</strong><br>
-  <sub>10 agentes de IA. 22 skills. 3 servidores MCP. Um único comando.</sub>
+  <sub>6 AI Tools. 10 agentes de IA. 22 skills. 3 servidores MCP. Um único comando.</sub>
 </p>
 
 <p align="center">
@@ -125,11 +125,15 @@ cd meu-projeto
 
 ```bash
 claude
-# depois digite: /aios-god-mode
+# depois digite: /aiox-god-mode
+# (ou /aios-god-mode — redireciona automaticamente)
 ```
 
 > [!IMPORTANT]
 > O [Claude Code](https://docs.anthropic.com/en/docs/claude-code) precisa estar instalado para usar o sistema de agentes AIOS. Instale com `npm install -g @anthropic-ai/claude-code`.
+
+> [!NOTE]
+> **Backward compatibility:** O comando `/aios-god-mode` continua funcionando — ele redireciona automaticamente para `/aiox-god-mode`. Nenhuma ação necessária para usuários existentes.
 
 ---
 
@@ -420,7 +424,7 @@ Para o planejamento do projeto, utilize suas melhores skills estratégicas. Apó
 
 ## ✨ Funcionalidades
 
-- **⚡ God Mode** — Orquestração completa com 10 personas de IA especializadas, cada uma com comandos dedicados
+- **⚡ God Mode** — Orquestração completa com 10 personas de IA especializadas, cada uma com comandos dedicados. Compatível com 6 AI Tools: Claude Code, Codex, Gemini, Cursor, GitHub Copilot e Antigravity
 - **🤖 Sistema de Agentes** — Ative agentes com `@nome-do-agente`, execute comandos com `*comando`. Protocolo de handoff integrado preserva contexto entre trocas
 - **📖 Desenvolvimento Orientado a Stories** — Todo trabalho flui por stories: `@sm *draft` → `@po *validate` → `@dev *develop` → `@qa *gate`
 - **👥 Sistema de Squads** — Squads multi-agente pré-configurados para workflows de domínios específicos (dev de framework, design de marca, landing pages)
@@ -613,6 +617,8 @@ meu-projeto/
 │   ├── rules/                     # Regras de workflow, exemplos de tools, autoridade de agentes
 │   ├── skills/                    # God Mode + 22 skills do ecossistema
 │   └── CLAUDE.md                  # Instruções do projeto para o Claude
+├── openai.yaml                    # Configuração para Codex (gerado automaticamente)
+├── AGENTS.md                      # Skills list para Codex (gerado automaticamente)
 ├── .aios-core/
 │   ├── constitution.md            # Princípios do framework (imutável)
 │   ├── core/                      # Módulos core do framework
@@ -662,6 +668,7 @@ Ao executar sem `--yes`, o instalador pergunta:
 | Prompt | Opções | Padrão |
 |--------|--------|--------|
 | **Nome do projeto** | Qualquer nome válido em kebab-case | — |
+| **AI Tool** | `Claude Code` / `Codex` / `Gemini` / `Cursor` / `GitHub Copilot` / `Antigravity` | Claude Code |
 | **Tipo de projeto** | `Greenfield` / `Brownfield` | Greenfield |
 | **Idioma** | `Português (PT-BR)` / `English` | PT-BR |
 | **Squads** | Seleção múltipla dos squads disponíveis | AFS + NSC |
@@ -728,6 +735,8 @@ Avaliação de débito técnico em 10 fases para codebases existentes com coleta
 - [Synkra AIOS](https://github.com/SynkraAI/aios-core) — O framework de Sistema Orquestrado por IA, por [Pedro Valério](https://github.com/Pedrovaleriolopez)
 - [squads.sh](https://squads.sh) — Gerenciamento de squads para projetos AIOS
 - [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) — O template que este CLI utiliza
+- [aiox-god-mode-template](https://github.com/gutomec/aiox-god-mode-template) — Template AIOX (branding atualizado)
+- [create-aiox-god-mode](https://github.com/gutomec/create-aiox-god-mode) — CLI alternativo com branding AIOX
 - [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) — Framework de gestão de projetos
 
 ---
