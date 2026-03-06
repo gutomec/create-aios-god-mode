@@ -673,3 +673,18 @@ Contribuições de qualquer tipo são bem-vindas!
 ## 📄 Licença
 
 [MIT](LICENSE) © [gutomec](https://github.com/gutomec)
+
+### Licenças de Terceiros
+
+Este CLI instala e integra projetos open-source que possuem suas próprias licenças. Todas são MIT:
+
+| Projeto | Licença | Copyright |
+|---------|---------|-----------|
+| [Synkra AIOS/AIOX](https://github.com/SynkraAI/aios-core) | MIT + Trademark Notice | BMad Code, LLC & SynkraAI Inc. |
+| [Get Shit Done](https://github.com/glittercowboy/get-shit-done) | MIT | Lex Christopherson |
+| [oh-my-claudecode](https://github.com/Yeachan-Heo/oh-my-claude-sisyphus) | MIT | Yeachan Heo |
+
+> [!NOTE]
+> O Synkra AIOS/AIOX é derivado do [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD) por Brian Madison. Os nomes "BMad", "BMad Method" e "BMad Core" são marcas registradas da BMad Code, LLC e **não** são licenciados sob MIT. Veja [TRADEMARK.md](https://github.com/bmad-code-org/BMAD-METHOD/blob/main/TRADEMARK.md) para detalhes.
+
+Consulte [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md) para os textos completos de cada licença.

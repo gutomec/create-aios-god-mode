@@ -1,6 +1,6 @@
 {
   "name": "create-aios-god-mode",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Bootstrap a Synkra AIOS project with God Mode — AI agent orchestration",
   "type": "module",
   "bin": {
@@ -10,7 +10,8 @@
     "bin/",
     "lib/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD-PARTY-LICENSES.md"
   ],
   "scripts": {
     "test": "node --test",
