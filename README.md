@@ -81,8 +81,8 @@ npx create-aios-god-mode meu-projeto
 </tr>
 <tr>
 <td align="center" width="33%">
-<h3>👥 4 Squads</h3>
-<sub>AFS (dev de framework), NSC (criador de squads), BrandCraft (design de marca), Ultimate LP (landing pages)</sub>
+<h3>🌐 6 AI Tools</h3>
+<sub>Claude Code, Codex, Gemini CLI, Cursor, GitHub Copilot, AntiGravity — selecione uma ou todas na instalação</sub>
 </td>
 <td align="center" width="33%">
 <h3>📖 Dev Orientado a Stories</h3>
@@ -417,7 +417,7 @@ Para o planejamento do projeto, utilize suas melhores skills estratégicas. Apó
 - **⚡ God Mode** — Orquestração completa com 10 personas de IA especializadas, cada uma com comandos dedicados. Compatível com 6 AI Tools: Claude Code, Codex, Gemini, Cursor, GitHub Copilot e Antigravity
 - **🤖 Sistema de Agentes** — Ative agentes com `@nome-do-agente`, execute comandos com `*comando`. Protocolo de handoff integrado preserva contexto entre trocas
 - **📖 Desenvolvimento Orientado a Stories** — Todo trabalho flui por stories: `@sm *draft` → `@po *validate` → `@dev *develop` → `@qa *gate`
-- **👥 Sistema de Squads** — Squads multi-agente pré-configurados para workflows de domínios específicos (dev de framework, design de marca, landing pages)
+- **👥 Sistema de Squads** — Adicione squads multi-agente sob demanda via `add-squad` para workflows de domínios específicos
 - **🧩 find-skills** — Busca e instalação de skills sob demanda via `find-skills` do ecossistema Vercel Labs
 - **🔌 Integração MCP** — 3 servidores MCP pré-configurados em `.mcp.json` para geração de imagens com IA, documentação ao vivo e componentes UI
 - **🛡️ Proteção do Framework** — Modelo de 4 camadas com deny rules determinísticas em `settings.json`. Arquivos L1/L2 são imutáveis
@@ -435,12 +435,12 @@ O instalador executa um **pipeline automatizado de 8 etapas**:
 | Etapa | Descrição |
 |:-----:|-----------|
 | 1 | 🔍 **Validar ambiente** — Verifica versão do Node.js, nome do projeto, diretório e rede |
-| 2 | 🏗️ **Inicializar framework AIOS** — Baixa e estrutura `.aios-core/` com constitution, tasks e workflows |
-| 3 | ⚡ **Instalar God Mode** — Baixa personas de agentes, skills e rules do [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) |
-| 4 | 🔌 **Configurar servidores MCP** — Configura `nano-banana-pro`, `context7`, `21st-dev` em `.mcp.json` |
+| 2 | 🏗️ **Inicializar framework AIOS** — Estrutura `.aiox-core/` com constitution, tasks e workflows. O usuário seleciona idioma, IDEs e tech preset |
+| 3 | ⚡ **Instalar God Mode** — Instala skills, rules e config do God Mode para **cada IDE selecionada** (template bundled no CLI) |
+| 4 | 🔌 **Configurar servidores MCP** — Configura `nano-banana-pro`, `context7`, `21st-dev` para cada IDE selecionada |
 | 5 | 🚀 **Instalar framework GSD** — [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) para gestão de projetos |
 | 6 | 🔧 **Instalar oh-my-claudecode** — [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) para orquestração multi-agente |
-| 7 | 🧹 **Limpeza** — Limpa estrutura de diretórios e converte para Claude Code |
+| 7 | 🧹 **Limpeza e conversão** — Converte estrutura para **cada IDE selecionada** (Claude Code, Codex, Gemini, Cursor, Copilot, AntiGravity) |
 | 8 | ✅ **Finalizar** — Instala dependências, inicializa git e faz commit inicial |
 
 ---
@@ -535,7 +535,7 @@ meu-projeto/
 │   └── CLAUDE.md                  # Instruções do projeto para o Claude
 ├── openai.yaml                    # Configuração para Codex (gerado automaticamente)
 ├── AGENTS.md                      # Skills list para Codex (gerado automaticamente)
-├── .aios-core/
+├── .aiox-core/
 │   ├── constitution.md            # Princípios do framework (imutável)
 │   ├── core/                      # Módulos core do framework
 │   ├── development/
@@ -567,12 +567,7 @@ cd meu-projeto
 npx create-aios-god-mode add-squad backend
 ```
 
-| Squad | Descrição |
-|-------|-----------|
-| **AFS** — AIOS Forge Squad | Desenvolvimento e contribuição ao framework |
-| **NSC** — Nirvana Squad Creator | Criação e gerenciamento de novos squads |
-| **BrandCraft** | Identidade de marca e design system |
-| **Ultimate LP** | Criação de landing pages com workflow multi-agente |
+O diretório `squads/` é criado vazio durante a instalação. Use o comando acima para adicionar squads conforme necessário.
 
 ---
 
@@ -635,8 +630,8 @@ Avaliação de débito técnico em 10 fases para codebases existentes com coleta
 
 - [Synkra AIOS](https://github.com/SynkraAI/aios-core) — O framework de Sistema Orquestrado por IA, por [Pedro Valério](https://github.com/Pedrovaleriolopez)
 - [squads.sh](https://squads.sh) — Gerenciamento de squads para projetos AIOS
-- [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) — O template que este CLI utiliza
-- [aiox-god-mode-template](https://github.com/gutomec/aiox-god-mode-template) — Template AIOX (branding atualizado)
+- [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) — Template AIOS (bundled no CLI desde v3.0.5)
+- [aiox-god-mode-template](https://github.com/gutomec/aiox-god-mode-template) — Template AIOX (bundled no CLI desde v3.0.5)
 - [create-aiox-god-mode](https://github.com/gutomec/create-aiox-god-mode) — CLI alternativo com branding AIOX
 - [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) — Framework de gestão de projetos
 
