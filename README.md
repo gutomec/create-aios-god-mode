@@ -3,8 +3,8 @@
 </h1>
 
 <p align="center">
-  <strong>Monte um sistema completo de desenvolvimento orquestrado por IA em segundos.</strong><br>
-  <sub>6 AI Tools. 10 agentes de IA. find-skills. oh-my-claudecode. 3 servidores MCP. Um único comando.</sub>
+  <strong>Instala o Synkra AIOX com God Mode — uma skill que orquestra o framework inteiro via CLI de IA.</strong><br>
+  <sub>Um comando. AIOX + God Mode + GSD + oh-my-claudecode + 3 MCPs. Pronto para usar.</sub>
 </p>
 
 <p align="center">
@@ -15,12 +15,11 @@
 </p>
 
 <p align="center">
+  <a href="#-o-que-este-cli-faz">O Que Faz</a> ·
   <a href="#-início-rápido">Início Rápido</a> ·
-  <a href="#-veja-em-ação">Exemplos</a> ·
-  <a href="#-o-que-você-recebe">O Que Você Recebe</a> ·
-  <a href="#-funcionalidades">Funcionalidades</a> ·
+  <a href="#-pipeline-de-instalação">Pipeline</a> ·
   <a href="#-comandos">Comandos</a> ·
-  <a href="#-agentes-de-ia">Agentes</a>
+  <a href="#-god-mode-skill">God Mode</a>
 </p>
 
 <br>
@@ -41,18 +40,18 @@ Este projeto existe graças ao trabalho incrível de diversas comunidades e cria
 
 | Projeto | Autor / Organização | Contribuição |
 |---------|---------------------|--------------|
-| [**Synkra AIOS**](https://github.com/SynkraAI/aios-core) | [**Pedro Valério**](https://github.com/Pedrovaleriolopez) / [SynkraAI](https://github.com/SynkraAI) | Framework core — toda a arquitetura de agentes, constitution, workflows, tasks, templates e o sistema de squads que este CLI instala e configura |
+| [**Synkra AIOS**](https://github.com/SynkraAI/aios-core) | [**Pedro Valério**](https://github.com/Pedrovaleriolopez) / [SynkraAI](https://github.com/SynkraAI) | Framework core — toda a arquitetura de agentes, constitution, workflows, tasks e templates. Instalado via `npx aiox-core init` |
 | [squads.sh](https://squads.sh) | [gutomec](https://github.com/gutomec) | Plataforma de gerenciamento de squads para projetos AIOS |
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | [Anthropic](https://www.anthropic.com) | Motor de IA que torna tudo possível — agentes, skills e MCP rodam sobre o Claude Code |
-| [Vercel Labs Skills](https://github.com/vercel-labs/skills) | [Vercel](https://github.com/vercel-labs) | Skill `find-skills` — busca de skills sob demanda |
+| [Vercel Labs Skills](https://github.com/vercel-labs/skills) | [Vercel](https://github.com/vercel-labs) | Skill `find-skills` — busca de skills sob demanda (instalada pelo AIOX) |
 | [nano-banana-pro](https://www.npmjs.com/package/@rafarafarafa/nano-banana-pro-mcp) | [rafarafarafa](https://github.com/rafarafarafa) | Servidor MCP para geração de imagens com Gemini |
 | [Context7](https://github.com/upstash/context7-mcp) | [Upstash](https://github.com/upstash) | Servidor MCP para documentação de bibliotecas ao vivo |
 | [21st.dev Magic](https://github.com/21st-dev/magic) | [21st.dev](https://github.com/21st-dev) | Servidor MCP para busca e geração de componentes UI |
-| [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) | [get-shit-done](https://github.com/get-shit-done) | Framework GSD para gestão de projetos com Claude Code |
-| [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) | [Sisyphus](https://github.com/Sisyphus) | Orquestração multi-agente para Claude Code |
+| [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) | [Lex Christopherson](https://github.com/glittercowboy) | Framework GSD para gestão de projetos com Claude Code |
+| [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) | [Yeachan Heo](https://github.com/Yeachan-Heo) | Orquestração multi-agente para Claude Code |
 
 > [!NOTE]
-> `create-aios-god-mode` é um **instalador e orquestrador** — ele baixa, configura e integra os projetos listados acima. Todo o crédito pelo framework Synkra AIOS pertence a [Pedro Valério](https://github.com/Pedrovaleriolopez) e à organização [SynkraAI](https://github.com/SynkraAI). O crédito pelas skills, MCPs e ferramentas pertence aos respectivos autores. Se você é autor de algum projeto listado e deseja ajustes na atribuição, [abra uma issue](https://github.com/gutomec/create-aios-god-mode/issues).
+> `create-aios-god-mode` é um **instalador e orquestrador** — ele executa os instaladores de cada projeto listado acima e adiciona a skill God Mode. Todo o crédito pelo framework Synkra AIOS pertence a [Pedro Valério](https://github.com/Pedrovaleriolopez) e à organização [SynkraAI](https://github.com/SynkraAI). O crédito pelas skills, MCPs e ferramentas pertence aos respectivos autores. Se você é autor de algum projeto listado e deseja ajustes na atribuição, [abra uma issue](https://github.com/gutomec/create-aios-god-mode/issues).
 
 ---
 
@@ -60,40 +59,40 @@ Este projeto existe graças ao trabalho incrível de diversas comunidades e cria
 npx create-aios-god-mode meu-projeto
 ```
 
+> [!NOTE]
+> Este pacote é equivalente ao [`create-aiox-god-mode`](https://github.com/gutomec/create-aiox-god-mode) com branding **Synkra AIOS**. Ambos instalam o mesmo sistema.
+
 ---
 
-## 🎯 O Que Você Recebe
+## 🎯 O Que Este CLI Faz
+
+Este CLI é um **instalador** que executa 3 instalações independentes e adiciona uma skill:
 
 <table>
 <tr>
-<td align="center" width="33%">
-<h3>🤖 10 Agentes de IA</h3>
-<sub>Dev, QA, Architect, PM, PO, SM, Analyst, Data Engineer, UX Designer, DevOps — cada um com persona única e comandos exclusivos</sub>
+<td align="center" width="25%">
+<h3>🏗️ AIOX Framework</h3>
+<sub>Executa <code>npx aiox-core init</code> que instala o framework Synkra AIOX com agentes, workflows, tasks, constitution e templates. <strong>O AIOX tem seus próprios prompts</strong> (idioma, IDEs, tech preset).</sub>
 </td>
-<td align="center" width="33%">
-<h3>🧩 find-skills</h3>
-<sub>Busca e instalação de skills sob demanda via <code>find-skills</code> — instale apenas o que você precisa, quando precisa</sub>
+<td align="center" width="25%">
+<h3>⚡ God Mode Skill</h3>
+<sub>Adiciona a skill <code>aios-god-mode</code> para cada IDE selecionada. É uma skill que permite <strong>controlar todo o framework AIOX via CLI de IA</strong> — criar agentes, rodar workflows, gerenciar stories.</sub>
 </td>
-<td align="center" width="33%">
+<td align="center" width="25%">
+<h3>🚀 GSD + OMC</h3>
+<sub>Executa <code>npx get-shit-done-cc --local</code> e <code>npx oh-my-claude-sisyphus install</code> com suas instalações padrão.</sub>
+</td>
+<td align="center" width="25%">
 <h3>🔌 3 Servidores MCP</h3>
-<sub>nano-banana-pro (imagens IA), Context7 (docs ao vivo), 21st.dev (componentes UI) — pré-configurados e prontos</sub>
-</td>
-</tr>
-<tr>
-<td align="center" width="33%">
-<h3>🌐 6 AI Tools</h3>
-<sub>Claude Code, Codex, Gemini CLI, Cursor, GitHub Copilot, AntiGravity — selecione uma ou todas na instalação</sub>
-</td>
-<td align="center" width="33%">
-<h3>📖 Dev Orientado a Stories</h3>
-<sub>Ciclo completo: criar → validar → implementar → QA gate. Toda feature começa com uma story</sub>
-</td>
-<td align="center" width="33%">
-<h3>🛡️ Proteção do Framework</h3>
-<sub>Modelo de 4 camadas (L1–L4) com deny rules. Arquivos core do framework são imutáveis por design</sub>
+<sub>Configura <code>nano-banana-pro</code>, <code>context7</code> e <code>21st-dev</code> para cada IDE selecionada.</sub>
 </td>
 </tr>
 </table>
+
+**O que este CLI NÃO faz:**
+- Não cria os agentes de IA — isso é feito pelo AIOX (`aiox-core`)
+- Não instala squads — cria apenas o diretório `squads/` vazio
+- Não faz prompts interativos — os prompts vêm do `aiox-core init`
 
 ---
 
@@ -115,15 +114,14 @@ cd meu-projeto
 
 ```bash
 claude
-# depois digite: /aiox-god-mode
-# (ou /aios-god-mode — redireciona automaticamente)
+# depois digite: /aios-god-mode
 ```
 
 > [!IMPORTANT]
-> O [Claude Code](https://docs.anthropic.com/en/docs/claude-code) precisa estar instalado para usar o sistema de agentes AIOS. Instale com `npm install -g @anthropic-ai/claude-code`.
+> O [Claude Code](https://docs.anthropic.com/en/docs/claude-code) precisa estar instalado para usar o God Mode. Instale com `npm install -g @anthropic-ai/claude-code`.
 
 > [!NOTE]
-> **Backward compatibility:** O comando `/aios-god-mode` continua funcionando — ele redireciona automaticamente para `/aiox-god-mode`. Nenhuma ação necessária para usuários existentes.
+> **Backward compatibility:** O comando `/aios-god-mode` redireciona automaticamente para `/aiox-god-mode`. Nenhuma ação necessária para usuários existentes.
 
 ---
 
@@ -345,16 +343,13 @@ Nível exigido:
 
 <br>
 
-**O que o AIOS faz com esse prompt:**
+**O que o God Mode faz com esse prompt:**
 
-| Agente | Ação |
-|--------|------|
-| `@architect` | Projeta a arquitetura full-stack (Next.js + SQLite + Auth) |
-| `@ux-design-expert` | Cria spec de UI premium com estética editorial médica |
-| `@dev` | Implementa landing page, painel admin e API backend |
-| `@data-engineer` | Projeta schema SQLite com índices adequados |
-| `@qa` | Valida qualidade, segurança e responsividade |
-| `nano-banana-pro` | Gera fotografia médica editorial via MCP |
+| Componente | Ação |
+|------------|------|
+| God Mode Skill | Classifica intent como OPERATE, roteia para agentes, ativa workflows |
+| Agentes AIOX | `@architect` projeta, `@ux-design-expert` cria specs, `@dev` implementa, `@qa` valida |
+| nano-banana-pro (MCP) | Gera fotografia médica editorial |
 | `@devops` | Faz push para o GitHub quando pronto |
 
 </details>
@@ -362,14 +357,14 @@ Nível exigido:
 <br>
 
 > [!TIP]
-> **Você não precisa de um prompt detalhado para ter resultados impressionantes.** O exemplo abaixo é muito mais simples — e o God Mode entrega um sistema completo e pronto para produção com a mesma qualidade.
+> **Você não precisa de um prompt detalhado para ter resultados impressionantes.** O exemplo abaixo é muito mais simples — e o God Mode entrega um sistema completo com a mesma qualidade.
 
 <details>
-<summary><strong>⚡ Exemplo Rápido: Mesmo Projeto, Prompt Simples — Resultados Igualmente Impressionantes</strong></summary>
+<summary><strong>⚡ Exemplo Rápido: Mesmo Projeto, Prompt Simples</strong></summary>
 
 <br>
 
-Este prompt mais curto alcança o mesmo escopo — landing page, backend, painel admin, fotos com IA, gestão de leads — com instruções mínimas. O God Mode preenche as lacunas usando suas skills e expertise de agentes integrados:
+Este prompt mais curto alcança o mesmo escopo — landing page, backend, painel admin, fotos com IA, gestão de leads — com instruções mínimas. O God Mode roteia para os agentes certos automaticamente:
 
 ---
 
@@ -395,53 +390,42 @@ Para o planejamento do projeto, utilize suas melhores skills estratégicas. Apó
 
 <br>
 
-**Mesmo resultado, menos esforço.** Os agentes do God Mode lidam autonomamente com tudo:
-
-| O Que Você Escreveu | O Que o AIOS Faz |
-|---------------------|-------------------|
-| "landing page de alta conversão" | `@ux-design-expert` projeta layout otimizado para conversão, `@dev` implementa |
-| "fotografias com nano banana pro" | Gera fotografia médica profissional via MCP |
-| "leads em SQLite" | `@data-engineer` projeta o schema, `@dev` implementa a API CRUD |
-| "painel de administração com autenticação" | Sistema completo de auth + dashboard admin com estatísticas |
-| "exportação em Excel" | Exportação `.xlsx` usando a skill `xlsx` |
-| "melhores skills estratégicas" | `@architect` planeja a arquitetura, `@pm` define requisitos |
-
-> **A diferença?** O prompt detalhado dá controle preciso sobre posicionamento, tom de copy e direção visual. O prompt simples deixa o AIOS tomar essas decisões por você. Ambos entregam resultados prontos para produção.
+**Mesmo resultado, menos esforço.** O God Mode classifica a intent, roteia para os agentes AIOX e orquestra tudo automaticamente.
 
 </details>
 
 ---
 
-## ✨ Funcionalidades
+## 📦 Pipeline de Instalação
 
-- **⚡ God Mode** — Orquestração completa com 10 personas de IA especializadas, cada uma com comandos dedicados. Compatível com 6 AI Tools: Claude Code, Codex, Gemini, Cursor, GitHub Copilot e Antigravity
-- **🤖 Sistema de Agentes** — Ative agentes com `@nome-do-agente`, execute comandos com `*comando`. Protocolo de handoff integrado preserva contexto entre trocas
-- **📖 Desenvolvimento Orientado a Stories** — Todo trabalho flui por stories: `@sm *draft` → `@po *validate` → `@dev *develop` → `@qa *gate`
-- **👥 Sistema de Squads** — Adicione squads multi-agente sob demanda via `add-squad` para workflows de domínios específicos
-- **🧩 find-skills** — Busca e instalação de skills sob demanda via `find-skills` do ecossistema Vercel Labs
-- **🔌 Integração MCP** — 3 servidores MCP pré-configurados em `.mcp.json` para geração de imagens com IA, documentação ao vivo e componentes UI
-- **🛡️ Proteção do Framework** — Modelo de 4 camadas com deny rules determinísticas em `settings.json`. Arquivos L1/L2 são imutáveis
-- **🔄 QA Loop** — Ciclo automatizado de revisão-correção: `@qa review → veredito → @dev corrige → re-review` (máx. 5 iterações)
-- **📋 Spec Pipeline** — Transforma requisitos informais em specs executáveis com seleção de fases baseada em complexidade (3-6 fases)
-- **🔧 oh-my-claudecode** — Orquestração multi-agente via [oh-my-claude-sisyphus](https://www.npmjs.com/package/oh-my-claude-sisyphus)
-- **🔍 Brownfield Discovery** — Avaliação de débito técnico em 10 fases para codebases existentes com coleta de dados multi-agente
+O CLI executa **8 etapas sequenciais**. Apenas a etapa 3 é código próprio deste CLI — as demais delegam para instaladores de terceiros:
 
----
+| Etapa | O Que Faz | Quem Faz |
+|:-----:|-----------|----------|
+| 1 | 🔍 **Validar ambiente** — Node.js ≥ 18, nome do projeto (kebab-case), diretório vazio, rede | CLI |
+| 2 | 🏗️ **Instalar AIOX** — Executa `npx aiox-core init <nome>`. O AIOX faz seus próprios prompts (idioma, IDEs, tech preset) e cria toda a estrutura do framework | `aiox-core` |
+| 3 | ⚡ **Adicionar God Mode** — Copia a skill `aios-god-mode` (1 SKILL.md + 8 referências + 1 rule + 1 settings.json) para cada IDE selecionada pelo usuário na etapa 2 | CLI |
+| 4 | 🔌 **Configurar MCPs** — Escreve configs de 3 servidores MCP (`nano-banana-pro`, `context7`, `21st-dev`) para cada IDE selecionada | CLI |
+| 5 | 🚀 **Instalar GSD** — Executa `npx get-shit-done-cc --local` (instalação padrão) | `get-shit-done-cc` |
+| 6 | 🔧 **Instalar oh-my-claudecode** — Executa `npx oh-my-claude-sisyphus install` (instalação padrão) | `oh-my-claude-sisyphus` |
+| 7 | 🧹 **Converter para IDEs** — Converte skills, rules e instruções para o formato de cada IDE selecionada. Cria diretório `squads/` vazio | CLI |
+| 8 | ✅ **Finalizar** — `npm install`, cria `.env.example`, `git init` + commit inicial | CLI |
 
-## 📦 Fluxo de Instalação
+### IDEs suportadas
 
-O instalador executa um **pipeline automatizado de 8 etapas**:
+A etapa 2 (`aiox-core init`) pergunta ao usuário quais IDEs usar. O CLI então instala God Mode e MCPs para cada uma:
 
-| Etapa | Descrição |
-|:-----:|-----------|
-| 1 | 🔍 **Validar ambiente** — Verifica versão do Node.js, nome do projeto, diretório e rede |
-| 2 | 🏗️ **Inicializar framework AIOS** — Estrutura `.aiox-core/` com constitution, tasks e workflows. O usuário seleciona idioma, IDEs e tech preset |
-| 3 | ⚡ **Instalar God Mode** — Instala skills, rules e config do God Mode para **cada IDE selecionada** (template bundled no CLI) |
-| 4 | 🔌 **Configurar servidores MCP** — Configura `nano-banana-pro`, `context7`, `21st-dev` para cada IDE selecionada |
-| 5 | 🚀 **Instalar framework GSD** — [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) para gestão de projetos |
-| 6 | 🔧 **Instalar oh-my-claudecode** — [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) para orquestração multi-agente |
-| 7 | 🧹 **Limpeza e conversão** — Converte estrutura para **cada IDE selecionada** (Claude Code, Codex, Gemini, Cursor, Copilot, AntiGravity) |
-| 8 | ✅ **Finalizar** — Instala dependências, inicializa git e faz commit inicial |
+| IDE | Skills | Rules | MCPs | Instruções |
+|-----|:------:|:-----:|:----:|:----------:|
+| **Claude Code** | `.claude/skills/` | `.claude/rules/` | `.mcp.json` | `CLAUDE.md` |
+| **Codex** | `.codex/skills/` | — | `.codex/config.toml` | `AGENTS.md` |
+| **Gemini CLI** | `.gemini/skills/` | `.gemini/rules/` | — | `GEMINI.md` |
+| **Cursor** | `.cursor/skills/` | `.cursor/rules/` | `.cursor/mcp.json` | `AGENTS.md` |
+| **GitHub Copilot** | — | — | — | `.github/copilot-instructions.md` |
+| **AntiGravity** | — | `.antigravity/rules/` | — | `AGENTS.md` |
+
+> [!NOTE]
+> MCPs per-project só são suportados por Claude Code, Codex e Cursor. Para as demais IDEs, o CLI emite um aviso.
 
 ---
 
@@ -449,7 +433,7 @@ O instalador executa um **pipeline automatizado de 8 etapas**:
 
 ### `init` (padrão)
 
-Cria um novo projeto AIOS do zero.
+Cria um novo projeto com AIOX + God Mode + GSD + OMC.
 
 ```bash
 npx create-aios-god-mode meu-projeto
@@ -457,25 +441,39 @@ npx create-aios-god-mode meu-projeto
 
 ### `update`
 
-Atualiza um projeto existente para a versão mais recente do template.
+Compara a versão do God Mode instalada com a versão bundled no CLI. Se houver versão mais nova, reinstala a skill.
 
 ```bash
 cd meu-projeto
 npx create-aios-god-mode update
 ```
 
+> [!TIP]
+> Use `npx create-aios-god-mode@latest update` para garantir que está usando a versão mais recente do CLI.
+
 ### `doctor`
 
-Executa verificações de saúde em uma instalação AIOS existente.
+Executa 8 verificações de saúde no projeto:
 
 ```bash
 cd meu-projeto
 npx create-aios-god-mode doctor
 ```
 
+| # | Verificação | Crítica |
+|---|-------------|:-------:|
+| 1 | Node.js ≥ 18.0.0 | Não |
+| 2 | Projeto AIOX (`core-config.yaml` existe) | **Sim** |
+| 3 | God Mode (`SKILL.md` existe) | **Sim** |
+| 4 | Config do Claude (`CLAUDE.md`) | Não |
+| 5 | Settings (`settings.json`) | Não |
+| 6 | Rules (pelo menos 1 `.md` em `rules/`) | Não |
+| 7 | Git inicializado | Não |
+| 8 | Rede (GitHub API acessível) | Não |
+
 ### `add-squad`
 
-Adiciona uma nova configuração de squad ao projeto.
+Adiciona um squad ao projeto via `npx squads add`.
 
 ```bash
 cd meu-projeto
@@ -485,25 +483,59 @@ npx create-aios-god-mode add-squad backend
 ---
 
 <details>
-<summary><h2>🤖 Agentes de IA</h2></summary>
+<summary><h2>⚡ God Mode Skill</h2></summary>
 
-Todos os agentes são ativados com `@nome-do-agente` e suportam comandos via prefixo `*`.
+O God Mode é uma **skill** — um arquivo markdown (`SKILL.md` + 8 referências) que instrui o Claude Code (ou outra IDE) a operar o framework AIOX. Não é um binário, não é um servidor — é um conjunto de instruções que a IA segue.
 
-| Agente | Persona | Função | Comandos Principais |
-|--------|---------|--------|---------------------|
-| `@dev` | **Dex** | Desenvolvedor Full Stack | `*develop`, `*build-autonomous`, `*run-tests`, `*self-critique` |
-| `@qa` | **Quinn** | Arquiteto de Testes | `*review`, `*gate`, `*security-check`, `*test-design` |
-| `@architect` | **Aria** | Arquiteto Técnico | `*design-system`, `*tech-selection`, `*api-design` |
-| `@pm` | **Morgan** | Product Manager | `*create-prd`, `*create-epic`, `*execute-epic`, `*write-spec` |
-| `@po` | **Pax** | Product Owner | `*validate-story-draft`, `*close-story`, `*backlog-review` |
-| `@sm` | **River** | Scrum Master | `*draft`, `*story-checklist` |
-| `@analyst` | **Atlas** | Analista de Negócios | `*research`, `*feasibility-study`, `*user-research` |
-| `@data-engineer` | **Dara** | Especialista em Banco de Dados | Design DDL, políticas RLS, migrações, otimização de queries |
-| `@ux-design-expert` | **Uma** | Designer UX/UI | Specs frontend, jornadas de usuário, design systems |
-| `@devops` | **Gage** | Gerente de Repositório | `*push`, `*create-pr`, `*release`, `*add-mcp` |
-| `@aios-master` | **Orion** | Orquestrador do Framework | `*create`, `*modify`, `*run-workflow`, `*correct-course` |
+### O que a skill faz
 
-**Comandos universais** (disponíveis em todos os agentes): `*help`, `*guide`, `*session-info`, `*yolo`, `*exit`
+1. **Classifica intent** — qualquer pedido é classificado como OPERATE, CREATE ou CONFIGURE
+2. **Roteia para agentes** — direciona para o agente AIOX correto (@dev, @qa, @architect, etc.)
+3. **Ativa workflows** — SDC (Story Development Cycle), QA Loop, Spec Pipeline, Brownfield Discovery
+4. **Cria componentes** — agentes, tasks, workflows, squads, checklists, templates, rules, data files
+5. **Aplica governance** — enforça a Constitution do AIOX (6 artigos), lifecycle de stories, delegation matrix
+
+### Quick Commands
+
+**Criação:**
+`*create-agent` · `*create-task` · `*create-workflow` · `*create-squad` · `*create-checklist` · `*create-template` · `*create-rule` · `*create-data` · `*configure`
+
+**Operação:**
+`*route` · `*agents` · `*workflows` · `*constitution` · `*lifecycle` · `*matrix` · `*navigate` · `*orchestrate` · `*diagnose` · `*sprint`
+
+### Agentes AIOX (instalados pelo `aiox-core`)
+
+| Agente | Persona | Função |
+|--------|---------|--------|
+| `@dev` | **Dex** | Desenvolvedor Full Stack |
+| `@qa` | **Quinn** | Arquiteto de Testes |
+| `@architect` | **Aria** | Arquiteto Técnico |
+| `@pm` | **Morgan** | Product Manager |
+| `@po` | **Pax** | Product Owner |
+| `@sm` | **River** | Scrum Master |
+| `@analyst` | **Atlas** | Analista de Negócios |
+| `@data-engineer` | **Dara** | Especialista em Banco de Dados |
+| `@ux-design-expert` | **Uma** | Designer UX/UI |
+| `@devops` | **Gage** | Gerente de Repositório |
+| `@aios-master` | **Orion** | Orquestrador do Framework |
+
+> Estes agentes são criados pelo `aiox-core`, não por este CLI. O God Mode apenas sabe como roteá-los.
+
+### Arquivos da skill
+
+```
+aios-god-mode/
+├── SKILL.md                              # Skill principal (~245 linhas)
+└── references/
+    ├── agent-creation.md                 # Schema YAML para criar agentes
+    ├── agent-matrix.md                   # Referência de comandos dos 11 agentes
+    ├── component-templates.md            # Guias para checklists, templates, data, rules
+    ├── framework-map.md                  # Mapa completo de paths e boundaries
+    ├── squad-creation.md                 # Estrutura e schema de squads
+    ├── task-creation.md                  # Schema YAML para tasks
+    ├── workflow-creation.md              # Schema YAML para workflows
+    └── workflow-playbooks.md             # Playbooks para SDC, QA Loop, Spec, Brownfield
+```
 
 </details>
 
@@ -511,7 +543,7 @@ Todos os agentes são ativados com `@nome-do-agente` e suportam comandos via pre
 
 ## 🔌 Servidores MCP
 
-Pré-configurados em `.mcp.json` e prontos para uso:
+Configurados pelo CLI para cada IDE selecionada:
 
 | Servidor | Pacote | Propósito |
 |----------|--------|-----------|
@@ -524,59 +556,47 @@ Pré-configurados em `.mcp.json` e prontos para uso:
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Estrutura do Projeto (após instalação)
 
 ```
 meu-projeto/
-├── .claude/
-│   ├── settings.json              # Permissões do Claude Code + deny rules
-│   ├── rules/                     # Regras de workflow, exemplos de tools, autoridade de agentes
-│   ├── skills/                    # God Mode + find-skills
-│   └── CLAUDE.md                  # Instruções do projeto para o Claude
-├── openai.yaml                    # Configuração para Codex (gerado automaticamente)
-├── AGENTS.md                      # Skills list para Codex (gerado automaticamente)
-├── .aiox-core/
-│   ├── constitution.md            # Princípios do framework (imutável)
-│   ├── core/                      # Módulos core do framework
+├── .claude/                              # Claude Code (criado pelo aiox-core)
+│   ├── settings.json                     # Permissões + deny rules (merge do CLI)
+│   ├── rules/                            # Regras de workflow (aiox-core + CLI)
+│   ├── skills/
+│   │   ├── aios-god-mode/                # ⚡ Adicionado por este CLI
+│   │   │   ├── SKILL.md
+│   │   │   ├── .version
+│   │   │   └── references/ (8 arquivos)
+│   │   └── (outras skills do aiox-core)
+│   └── CLAUDE.md                         # Instruções do projeto (aiox-core)
+├── .aiox-core/                           # Framework AIOX (criado pelo aiox-core)
+│   ├── constitution.md
+│   ├── core/
 │   ├── development/
-│   │   ├── tasks/                 # Definições de tasks executáveis
-│   │   ├── templates/             # Templates de documentos e código
-│   │   ├── checklists/            # Checklists de validação
-│   │   └── workflows/             # Workflows multi-etapa
-│   └── data/                      # Registro de tools, dados de configuração
-├── .mcp.json                      # Configuração dos servidores MCP
-├── docs/
-│   ├── stories/                   # Stories de desenvolvimento
-│   ├── prd/                       # Documentos de requisitos do produto
-│   └── architecture/              # Documentação de arquitetura do sistema
-├── squads/                        # Configurações de squads
-├── packages/                      # Pacotes do projeto
-├── tests/                         # Suítes de teste
+│   │   ├── tasks/
+│   │   ├── templates/
+│   │   ├── checklists/
+│   │   └── workflows/
+│   └── data/
+├── .mcp.json                             # Servidores MCP (configurado pelo CLI)
+├── docs/                                 # (criado pelo aiox-core)
+├── squads/                               # Diretório vazio (criado pelo CLI)
+├── .env.example                          # Template de variáveis de ambiente (CLI)
 ├── package.json
 └── README.md
 ```
 
----
-
-## 👥 Squads
-
-Squads podem ser adicionados após a criação do projeto com o comando `add-squad`:
-
-```bash
-cd meu-projeto
-npx create-aios-god-mode add-squad backend
-```
-
-O diretório `squads/` é criado vazio durante a instalação. Use o comando acima para adicionar squads conforme necessário.
+> Se outras IDEs foram selecionadas, haverá diretórios adicionais (`.codex/`, `.gemini/`, `.cursor/`, `.antigravity/`, `.github/`, etc.) com as skills e configs convertidas.
 
 ---
 
 <details>
 <summary><h2>🔄 Workflows</h2></summary>
 
-### Story Development Cycle (SDC) — Principal
+Estes workflows são definidos pelo framework AIOX. O God Mode sabe como ativá-los:
 
-O workflow principal de desenvolvimento, usado para toda implementação de stories:
+### Story Development Cycle (SDC) — Principal
 
 ```
 @sm *draft → @po *validate → @dev *develop → @qa *gate → @devops *push
@@ -590,8 +610,6 @@ O workflow principal de desenvolvimento, usado para toda implementação de stor
 | QA Gate | `@qa` | 7 verificações de qualidade → PASS / FAIL |
 
 ### QA Loop — Revisão Iterativa
-
-Ciclo automatizado de revisão-correção após o QA gate inicial:
 
 ```
 @qa review → veredito → @dev corrige → re-review (máx. 5 iterações)
@@ -630,10 +648,11 @@ Avaliação de débito técnico em 10 fases para codebases existentes com coleta
 
 - [Synkra AIOS](https://github.com/SynkraAI/aios-core) — O framework de Sistema Orquestrado por IA, por [Pedro Valério](https://github.com/Pedrovaleriolopez)
 - [squads.sh](https://squads.sh) — Gerenciamento de squads para projetos AIOS
+- [create-aiox-god-mode](https://github.com/gutomec/create-aiox-god-mode) — CLI alternativo com branding AIOX
 - [aios-god-mode-template](https://github.com/gutomec/aios-god-mode-template) — Template AIOS (bundled no CLI desde v3.0.5)
 - [aiox-god-mode-template](https://github.com/gutomec/aiox-god-mode-template) — Template AIOX (bundled no CLI desde v3.0.5)
-- [create-aiox-god-mode](https://github.com/gutomec/create-aiox-god-mode) — CLI alternativo com branding AIOX
 - [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) — Framework de gestão de projetos
+- [oh-my-claudecode](https://www.npmjs.com/package/oh-my-claude-sisyphus) — Orquestração multi-agente
 
 ---
 
